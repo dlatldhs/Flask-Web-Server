@@ -1,11 +1,33 @@
-{% if question_list %}
-<!--render_template 함수에서 전달받은 
-질문 목록 데이터인 question_list 있는지 검색함-->
-    <ul>
-    {% for question in question_list %}<!-- question_list 저장된 데이터를 question 객체에 대입-->
-        <li><a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a></li>
-        {% endfor %} 
-    </ul>
-{% else %}
-    <p>질문이 없습니다.</p>
-{% endif %}<!-- 옆에꺼 탬플릿 태그임 파이썬 코드와 연결이 됨-->
+<!--<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">-->
+{% extends 'base.html' %}
+{% block content %} 
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>
+                <a href="{{ url_for('question.detail', question_id=question.id) }}">{{ question.subject }}</a>
+            </td>
+            <td>{{ question.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('question.create') }}" class="btn btn-primary">게시물 제작하깅</a>
+</div>
+{% endblock %}
