@@ -9,7 +9,14 @@
     <title>Hi Jamp To Flask</title>
 </head>
 <body>
+<!-- 메뉴 바-->
+{% include "navbar.html" %}
+<!-- 기본 템플릿 안에 있어야 될 것들 -->
 {% block content %}
 {% endblock %}
+<!-- jQuery & bootstrap + JS-->
+<script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
 </body>
 </html>
