@@ -21,3 +21,10 @@ class Answer(db.Model):
     #답변 모델 데이터는 어떤 질문에 대한 답변인지 알아야 하므로 
     #2단계에서 생성한 질문 모델과 연결된 속성을 포함해야 한다. 
     #이처럼 어떤 속성을 기존 모델과 연결하려면 db.ForeignKey를 사용해야 한다
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique = True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    #unique = True 같은 값을 저장할 수 없다
