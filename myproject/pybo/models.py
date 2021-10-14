@@ -17,6 +17,8 @@ class Answer(db.Model):
     question = db.relationship('Question', backref = db.backref('answer_set'))
     content = db.Column(db.Text(),nullable=False)
     create_date = db.Column(db.DateTime(),nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user = db.relationship('User', backref=db.backref('answer_set'))
     #question_id 속성은 질문 모델과 연결하려고 추가했다. 
     #답변 모델 데이터는 어떤 질문에 대한 답변인지 알아야 하므로 
     #2단계에서 생성한 질문 모델과 연결된 속성을 포함해야 한다. 
